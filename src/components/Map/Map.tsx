@@ -5,10 +5,35 @@ import Rating from "@material-ui/lab";
 
 import useStyles from "./Map.style.js";
 
-const Map = () => {
+interface Props {
+  setCoordinates: React.Dispatch<
+    React.SetStateAction<{
+      lat: number;
+      lng: number;
+    }>
+  >;
+  setBounds: React.Dispatch<
+    React.SetStateAction<{
+      sw: {
+        lat: number;
+        lng: number;
+      };
+      ne: {
+        lat: number;
+        lng: number;
+      };
+    }>
+  >;
+  coordinates: {
+    lat: number;
+    lng: number;
+  };
+}
+
+const Map = ({ setCoordinates, setBounds, coordinates }: Props) => {
   const classes = useStyles();
   const isMobile = useMediaQuery("(min-width: 600px)");
-  const coordinates = { lat: 0, lng: 0 };
+  // const coordinates = { lat: 0, lng: 0 };
 
   return (
     <div className={classes.mapContainer}>
@@ -19,7 +44,11 @@ const Map = () => {
         defaultZoom={14}
         margin={[50, 50, 50, 50]}
         // options={""}
-        // onChange={""}
+        onChange={(e) => {
+          console.log(e);
+          setCoordinates({ lat: e.center.lat, lng: e.center.lng });
+          setBounds({ ne: e.marginBounds.ne, sw: e.marginBounds.sw });
+        }}
         // onChildClick={""}
       ></GoogleMapReact>
     </div>

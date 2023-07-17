@@ -10,29 +10,16 @@ import {
 } from "@material-ui/core";
 
 import useStyles from "./List.style.js";
-import { type } from "os";
 import PlaceDetails from "../PlaceDetails/PlaceDetailes";
 
-type PlacesProps = {
-  name: string;
-}[];
+interface Props {
+  places: { name: string }[];
+}
 
-const List = () => {
+const List = ({ places }: Props) => {
   const classes = useStyles();
   const [type, setType] = useState("restaurants");
   const [rating, setRating] = useState("");
-
-  const places: PlacesProps = [
-    { name: "Cool Place" },
-    { name: "Best Beer" },
-    { name: "Best Steak" },
-    { name: "Cool Place" },
-    { name: "Best Beer" },
-    { name: "Best Steak" },
-    { name: "Cool Place" },
-    { name: "Best Beer" },
-    { name: "Best Steak" },
-  ];
 
   return (
     <div className={classes.container}>
