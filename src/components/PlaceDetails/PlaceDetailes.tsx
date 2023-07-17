@@ -1,7 +1,11 @@
-const PlaceDetails = () => {
+type PlaceProps = {
+  name: string;
+};
+
+const PlaceDetails = ({ name }: PlaceProps) => {
   return (
     <>
-      <h1>This is place details!</h1>
+      <h1>{name}</h1>
     </>
   );
 };
