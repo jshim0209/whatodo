@@ -7,18 +7,41 @@ import { CssBaseline, Grid } from "@material-ui/core";
 import { getPlacesData } from "./api";
 
 const App = () => {
-  const [places, setPlaces] = useState([{ name: "" }]);
+  const [places, setPlaces] = useState([
+    {
+      name: "",
+      photo: {
+        images: {
+          large: {
+            url: "",
+          },
+        },
+      },
+      price_level: "",
+      ranking: "",
+      awards: [
+        {
+          images: {
+            small: "",
+          },
+          display_name: "",
+        },
+      ],
+      cuisine: [
+        {
+          name: "",
+        },
+      ],
+      address: "",
+      phone: "",
+      web_url: "",
+      website: "",
+      latitude: "",
+      longitude: "",
+    },
+  ]);
   const [coordinates, setCoordinates] = useState({ lat: 0, lng: 0 });
-  const [bounds, setBounds] = useState<{
-    sw: {
-      lat: number;
-      lng: number;
-    };
-    ne: {
-      lat: number;
-      lng: number;
-    };
-  }>({
+  const [bounds, setBounds] = useState({
     sw: {
       lat: 0,
       lng: 0,
@@ -38,7 +61,7 @@ const App = () => {
   }, []);
 
   useEffect(() => {
-    getPlacesData(bounds!.sw, bounds!.ne!).then((data) => {
+    getPlacesData(bounds.sw, bounds.ne).then((data) => {
       console.log(data);
       setPlaces(data);
     });
@@ -56,6 +79,7 @@ const App = () => {
             setCoordinates={setCoordinates}
             setBounds={setBounds}
             coordinates={coordinates}
+            places={places}
           />
         </Grid>
       </Grid>

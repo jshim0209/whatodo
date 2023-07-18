@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const URL = "https://travel-advisor.p.rapidapi.com/hotels/list-in-boundary";
+const URL =
+  "https://travel-advisor.p.rapidapi.com/restaurants/list-in-boundary";
 
 const getPlacesData = async (
   sw: { lat: number; lng: number },

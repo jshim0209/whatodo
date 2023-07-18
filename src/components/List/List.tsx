@@ -13,7 +13,33 @@ import useStyles from "./List.style.js";
 import PlaceDetails from "../PlaceDetails/PlaceDetailes";
 
 interface Props {
-  places: { name: string }[];
+  places: {
+    name: string;
+    photo: {
+      images: {
+        large: {
+          url: string;
+        };
+      };
+    };
+    price_level: string;
+    ranking: string;
+    awards: {
+      images: {
+        small: string;
+      };
+      display_name: string;
+    }[];
+    cuisine: {
+      name: string;
+    }[];
+    address: string;
+    phone: string;
+    web_url: string;
+    website: string;
+    latitude: string;
+    longitude: string;
+  }[];
 }
 
 const List = ({ places }: Props) => {
@@ -56,7 +82,7 @@ const List = ({ places }: Props) => {
       <Grid container spacing={3} className={classes.list}>
         {places.map((place, i) => (
           <Grid item key={i} xs={12}>
-            <PlaceDetails name={place.name} />
+            <PlaceDetails place={place} />
           </Grid>
         ))}
       </Grid>
